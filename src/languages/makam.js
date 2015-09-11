@@ -63,7 +63,7 @@ function(hljs) {
       },
       {
         className: 'symbol',
-        begin: /([-=]>|<-)/ // relevance booster
+        begin: /<-/
       }
     ]
   }
