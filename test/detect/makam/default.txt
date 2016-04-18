@@ -1,0 +1,9 @@
+%use test.
+
+term : type.
+app : term -> term -> term.
+lam : (term -> term) -> term.
+
+step : term -> term -> prop.
+
+step (app (lam E) E') (E E').
