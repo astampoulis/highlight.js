@@ -22,7 +22,7 @@ function(hljs) {
   var TYPE = {
       className: 'typeexpr',
       excludeBegin: true, excludeEnd: true,
-      begin : /:(?![:=-])/, end: /(\.\s|\))/,
+      begin : /(?!Yes):(?![:=-])/, end: /(\.\s|\))/,
       contains: [COMMENT, TYPE_SYMBOLS, TYPE_VARS, TYPE_IN_PARENS], keywords: TYPE_KEYWORDS
   };
 
