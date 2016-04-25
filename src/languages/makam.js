@@ -19,10 +19,16 @@ function(hljs) {
   var TYPE_IN_PARENS = {
       begin: /\(/, end: /\)/, contains: ['self', COMMENT, TYPE_SYMBOLS, TYPE_VARS], keywords: TYPE_KEYWORDS
   };
-  var TYPE = {
+  var TYPEDEF = {
       className: 'typeexpr',
       excludeBegin: true, excludeEnd: true,
-      begin : /(?!Yes):(?![:=-])/, end: /(\.\s|\))/,
+      begin : /^[a-z][a-zA-Z0-9_']+(\s*,\s*[a-z][a-zA-Z0-9_']+)*\s*:(?![:=-])/, end: /(\.\s|\))/,
+      contains: [COMMENT, TYPE_SYMBOLS, TYPE_VARS, TYPE_IN_PARENS], keywords: TYPE_KEYWORDS
+  };
+  var TYPEREST = {
+      className: 'typeexpr',
+      excludeBegin: true, excludeEnd: true,
+      begin : /(?!Yes):(?![:=-])/, end: /(\s|->)/,
       contains: [COMMENT, TYPE_SYMBOLS, TYPE_VARS, TYPE_IN_PARENS], keywords: TYPE_KEYWORDS
   };
 
@@ -49,11 +55,12 @@ function(hljs) {
         className: 'command',
         begin: /%[a-z]+/
       },
-      TYPE,
+      TYPEREST, 
       {
         className: 'definition',
         begin: /^[a-z][a-zA-Z0-9_']+/
       },
+      TYPEDEF,
       hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null}),
       {
         className: 'number',
